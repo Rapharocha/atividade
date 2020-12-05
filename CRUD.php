@@ -1,10 +1,12 @@
 <?php
 	
-$server = "localhost";
-$user = "root";
-$password = "";
-$banco = "teste";
+$url = getenv('JAWSDB_URL');
+$dbparts = parse_url($url);
 
+$server = $dbparts['host'];
+$user = $dbparts['user'];
+$password = $dbparts['pass'];
+$banco = ltrim($dbparts['path'],'/');
 //criar uma conexão
 $conexao = new mysqli($server, $user, $password, $banco);
 
